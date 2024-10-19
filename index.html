@@ -15,18 +15,16 @@
             <input type="text" id="playerInput" placeholder="Enter player names, separated by commas">
             <button id="startGame">Start Game</button>
         </div>
-
+    
         <div id="game" style="display: none;">
             <h2 id="roundInfo"></h2>
+            <div id="inputArea">
+                <input type="number" id="inputValue" min="0">
+                <button id="submitInput">Submit</button>
+            </div>
             <div id="scoreboardContainer">
                 <table id="scoreTable"></table>
             </div>
-            <button id="nextRound" style="display: none;">Next Round</button>
-        </div>
-
-        <div id="results" style="display: none;">
-            <h2>Game Over</h2>
-            <div id="finalScores"></div>
         </div>
     </div>
 
