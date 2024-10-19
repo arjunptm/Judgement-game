@@ -141,7 +141,7 @@ def calculate_cards_per_round(num_players):
         cards_per_round.append(i)
     
     # Increasing (excluding max_cards as it's already included)
-    for i in range(2, max_cards):
+    for i in range(2, max_cards+1):
         cards_per_round.append(i)
     
     return cards_per_round
