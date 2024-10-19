@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judgement Score Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Judgement Score Tracker</h1>
+        
+        <div id="setup">
+            <h2>Enter Player Names</h2>
+            <input type="text" id="playerInput" placeholder="Enter player names, separated by commas">
+            <button id="startGame">Start Game</button>
+        </div>
+
+        <div id="game" style="display: none;">
+            <h2 id="roundInfo"></h2>
+            <div id="scoreboardContainer">
+                <table id="scoreTable"></table>
+            </div>
+            <button id="nextRound" style="display: none;">Next Round</button>
+        </div>
+
+        <div id="results" style="display: none;">
+            <h2>Game Over</h2>
+            <div id="finalScores"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
