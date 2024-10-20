@@ -94,3 +94,23 @@ th {
 #results h3 {
     color: #27ae60;
 }
+
+#numberButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+#numberButtons button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#numberButtons button:hover {
+    background-color: #2980b9;
+}

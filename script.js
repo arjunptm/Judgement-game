@@ -94,21 +94,25 @@ class ScoreBoard {
     handleInput(value) {
         const player = this.playerOrder[this.currentPlayerIndex];
         const cards = this.cardsPerRound[this.currentRound];
-
-        if (isNaN(value) || value < 0 || value > cards) {
+        const numValue = parseInt(value);
+    
+        if (isNaN(numValue) || numValue < 0 || numValue > cards) {
             alert(`Please enter a valid number between 0 and ${cards}.`);
             return;
         }
-
+    
         if (this.isPredictionPhase) {
-            this.predictions[player][this.currentRound] = parseInt(value);
+            this.predictions[player][this.currentRound] = numValue;
         } else {
-            this.tricks[player][this.currentRound] = parseInt(value);
+            this.tricks[player][this.currentRound] = numValue;
             this.updateScore(player);
         }
-
+    
         this.updateScoreboard();
         this.moveToNextInput();
+        
+        // Clear the input field
+        document.getElementById('inputValue').value = '';
     }
 
     updateScore(player) {
@@ -131,14 +135,13 @@ class ScoreBoard {
                 this.isPredictionPhase = false;
             }
         }
-
         if (this.currentRound >= this.cardsPerRound.length) {
             this.endGame();
             return;
         }
-
         this.highlightCurrentCell();
         this.updateRoundInfo();
+        this.createNumberButtons(); // Update the number buttons for the new round/phase
     }
 
     updateRoundInfo() {
@@ -148,6 +151,7 @@ class ScoreBoard {
         const cards = this.cardsPerRound[this.currentRound];
         const trump = this.trumpSuites[this.currentRound % this.trumpSuites.length];
         roundInfo.textContent = `Round ${this.currentRound + 1}, Cards: ${cards}, Trump: ${trump}, ${phase} for ${player}`;
+        this.createNumberButtons();
     }
 
     endGame() {
@@ -175,6 +179,20 @@ class ScoreBoard {
         // Disable further input
         document.getElementById('inputValue').disabled = true;
         document.getElementById('submitInput').disabled = true;
+    }
+
+    createNumberButtons() {
+        const buttonContainer = document.getElementById('numberButtons');
+        buttonContainer.innerHTML = '';
+        const maxCards = this.cardsPerRound[this.currentRound];
+        for (let i = 0; i <= maxCards; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.addEventListener('click', () => {
+                this.handleInput(i);
+            });
+            buttonContainer.appendChild(button);
+        }
     }
 }
 
@@ -257,6 +275,8 @@ function handleInput() {
     }
 
     scoreboard.handleInput(numericValue);
+    // const inpNode = document.getElementById('inputValue');
+    // console.log(inpNode)
     document.getElementById('inputValue').value = '';
 }
 
